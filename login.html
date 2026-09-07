@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — Ayusetu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="auth-wrap">
+  <aside class="auth-side">
+    <a class="brand" href="index.html" style="color:#fff;">
+      <span class="brand-mark">A</span>
+      <span class="brand-name">Ayusetu</span>
+    </a>
+    <div class="auth-side-quote">"Your story. Your care. Better understood."</div>
+    <div class="auth-side-foot">Ayusetu is a demo application — use sample information only.</div>
+  </aside>
+
+  <main class="auth-main">
+    <div class="auth-box">
+      <h1>Welcome back</h1>
+      <p class="auth-sub">Log in to continue your care journey.</p>
+
+      <div class="role-toggle" id="role-toggle">
+        <button type="button" data-role="patient" class="active">Patient</button>
+        <button type="button" data-role="doctor">Doctor</button>
+      </div>
+
+      <div class="form-msg error" id="form-error"></div>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" required autocomplete="current-password" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Log in</button>
+      </form>
+
+      <div style="margin-top:24px; padding-top:18px; border-top:1px solid #e2e8f0; text-align:center;">
+        <div style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:10px;">⚡ Quick Demo Accounts</div>
+        <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+          <button type="button" class="btn btn-outline btn-sm" id="quick-patient-btn">👤 Patient Demo (Rahul)</button>
+          <button type="button" class="btn btn-outline btn-sm" id="quick-doctor-btn">🩺 Doctor Demo (Dr. Priya)</button>
+        </div>
+      </div>
+
+      <p class="auth-foot">New to Ayusetu? <a class="link" href="signup.html" id="signup-link">Create an account</a></p>
+    </div>
+  </main>
+</div>
+
+<script src="app.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

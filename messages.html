@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Messages — Ayusetu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="ayusetu-header"></div>
+
+<main class="app-main">
+  <div class="page-head">
+    <div class="eyebrow">Private & secure</div>
+    <h1>Messages</h1>
+    <p>Conversations are private between you and the assigned doctor or patient for each case.</p>
+  </div>
+
+  <div class="messages-shell">
+    <aside class="conv-list" id="conv-list"></aside>
+    <div class="conv-thread" id="conv-thread">
+      <div class="empty-state" style="border:none; margin:auto;">
+        <div class="empty-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Select a conversation</h3>
+        <p>Choose a case from the left to view your messages.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="app.js"></script>
+<script src="messages.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New case — Ayusetu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="ayusetu-header"></div>
+
+<main class="app-main">
+  <div class="flow-shell">
+
+    <div class="flow-progress" id="flow-progress">
+      <div class="flow-step active" data-step="1"><div class="flow-step-num">1</div><div class="flow-step-label">Doctor</div></div>
+      <div class="flow-line"></div>
+      <div class="flow-step" data-step="2"><div class="flow-step-num">2</div><div class="flow-step-label">Your story</div></div>
+      <div class="flow-line"></div>
+      <div class="flow-step" data-step="3"><div class="flow-step-num">3</div><div class="flow-step-label">Guided questions</div></div>
+      <div class="flow-line"></div>
+      <div class="flow-step" data-step="4"><div class="flow-step-num">4</div><div class="flow-step-label">Review</div></div>
+    </div>
+
+    <!-- STEP 1: choose doctor -->
+    <section class="flow-card" data-step-panel="1">
+      <h2>Choose your doctor</h2>
+      <p class="flow-sub">Select the doctor you'd like this case to go to.</p>
+      <div class="doctor-option-list" id="doctor-list"></div>
+      <div id="doctor-selected-summary"></div>
+      <div class="flow-actions">
+        <span></span>
+        <button class="btn btn-primary" id="step1-next" disabled>Continue →</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: story -->
+    <section class="flow-card hidden" data-step-panel="2">
+      <div class="flow-card-topline"><div><h2 id="story-heading">Tell us what you're experiencing.</h2><p class="flow-sub" id="story-sub">Describe it in your own words — as much or as little detail as you have.</p></div><label class="language-select"><span>Language</span><select id="case-language"><option value="en">English</option><option value="te">తెలుగు</option><option value="hi">हिन्दी</option></select></label></div>
+
+      <div class="input-mode-toggle">
+        <button type="button" class="mode-btn active" data-mode="text">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Type
+        </button>
+        <button type="button" class="mode-btn" data-mode="voice">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 014 4v3a4 4 0 01-8 0V6a4 4 0 014-4z" stroke="currentColor" stroke-width="1.8"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Speak naturally
+        </button>
+      </div>
+
+      <div class="field mb-0" id="text-input-wrap">
+        <textarea id="story-text" rows="6" placeholder="I've been experiencing…"></textarea>
+      </div>
+
+      <div id="voice-input-wrap" class="hidden">
+        <button type="button" class="btn btn-outline btn-block" id="voice-record-btn">🎙 Start speaking</button>
+        <div class="voice-status" id="voice-status"><span class="mic-pulse"></span><span id="voice-status-text">Tap to start — Ayusetu will transcribe as you speak.</span></div>
+        <div class="field mt-16 mb-0">
+          <textarea id="story-text-voice" rows="5" placeholder="Your transcribed story will appear here — feel free to edit it."></textarea>
+        </div>
+      </div>
+
+      <div class="flow-actions">
+        <button class="btn btn-ghost" id="step2-back">← Back</button>
+        <button class="btn btn-primary" id="step2-next" disabled>Continue →</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: guided questions -->
+    <section class="flow-card hidden" data-step-panel="3">
+      <h2>Ayusetu Assist</h2>
+      <p class="flow-sub">A few quick questions to help your doctor understand fully.</p>
+      <div class="qa-progress" id="qa-progress">Question 1 of 1</div>
+      <div class="qa-question" id="qa-question">—</div>
+      <div class="field mb-0">
+        <textarea id="qa-answer" rows="3" placeholder="Type your answer…"></textarea>
+      </div>
+      <div class="flow-actions">
+        <button class="btn btn-ghost" id="step3-back">← Back</button>
+        <button class="btn btn-primary" id="step3-next">Next →</button>
+      </div>
+    </section>
+
+    <!-- STEP 4: review -->
+    <section class="flow-card hidden" data-step-panel="4">
+      <h2>Review your case</h2>
+      <p class="flow-sub">Here's the structured summary Ayusetu prepared. Edit anything before sending.</p>
+      <div id="case-summary"></div>
+      <div class="flow-actions">
+        <button class="btn btn-ghost" id="step4-back">← Back</button>
+        <button class="btn btn-accent btn-lg" id="submit-case-btn">Send to doctor →</button>
+      </div>
+    </section>
+
+    <!-- SUBMITTED -->
+    <section class="flow-card hidden" data-step-panel="done">
+      <div class="flex-center" style="flex-direction:column; text-align:center; padding:20px 0;">
+        <div class="empty-icon" style="margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2>Case submitted</h2>
+        <p class="flow-sub">Your case is now with your doctor. You'll be notified as soon as they respond.</p>
+        <div class="flex gap-12 mt-16">
+          <a href="patient-dashboard.html" class="btn btn-primary">Back to dashboard</a>
+          <a href="history.html" class="btn btn-outline">View medical history</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script src="app.js"></script>
+<script src="case.js"></script>
+</body>
+</html>

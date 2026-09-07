@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — Ayusetu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="ayusetu-header"></div>
+
+<main class="app-main">
+  <div class="page-head">
+    <div class="eyebrow">Your account</div>
+    <h1>Profile</h1>
+  </div>
+
+  <div class="profile-head">
+    <div class="avatar-lg" id="avatar-display">
+      <span id="avatar-initials"></span>
+      <img id="avatar-photo" class="hidden" alt="Profile photo">
+      <label class="avatar-edit" for="photo-input" title="Change photo">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </label>
+      <input type="file" id="photo-input" accept="image/*" class="hidden">
+    </div>
+    <div>
+      <h2 id="profile-name" style="font-size:1.4rem;"></h2>
+      <p class="text-muted" id="profile-role"></p>
+    </div>
+  </div>
+
+  <div class="info-grid" id="info-grid"></div>
+
+  <div class="section-title">Account</div>
+  <div class="card card-pad">
+    <button class="btn btn-outline" id="edit-toggle-btn">Edit details</button>
+    <div id="edit-form" class="hidden mt-24"></div>
+  </div>
+</main>
+
+<script src="app.js"></script>
+<script src="profile.js"></script>
+</body>
+</html>

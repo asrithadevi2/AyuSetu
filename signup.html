@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create account — Ayusetu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="auth-wrap">
+  <aside class="auth-side">
+    <a class="brand" href="index.html" style="color:#fff;">
+      <span class="brand-mark">A</span>
+      <span class="brand-name">Ayusetu</span>
+    </a>
+    <div class="auth-side-quote">"A well-prepared case leads to a better consultation — for everyone."</div>
+    <div class="auth-side-foot">Ayusetu is a demo application — use sample information only.</div>
+  </aside>
+
+  <main class="auth-main">
+    <div class="auth-box">
+      <h1>Create your account</h1>
+      <p class="auth-sub">Tell us a little about yourself to get started.</p>
+
+      <div class="role-toggle" id="role-toggle">
+        <button type="button" data-role="patient" class="active">Patient</button>
+        <button type="button" data-role="doctor">Doctor</button>
+      </div>
+
+      <div class="form-msg error" id="form-error"></div>
+
+      <form id="signup-form" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" required placeholder="e.g. Ananya Rao">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" required placeholder="+91 98765 43210">
+          </div>
+        </div>
+
+        <!-- Patient-only fields -->
+        <div id="patient-fields">
+          <div class="field">
+            <label for="dob">Date of birth</label>
+            <input type="date" id="dob">
+          </div>
+        </div>
+
+        <!-- Doctor-only fields -->
+        <div id="doctor-fields" class="hidden">
+          <div class="field-row">
+            <div class="field">
+              <label for="specialization">Specialization</label>
+              <input type="text" id="specialization" placeholder="e.g. Cardiology">
+            </div>
+            <div class="field">
+              <label for="hospital">Hospital</label>
+              <input type="text" id="hospital" placeholder="e.g. St. Grace Hospital">
+            </div>
+          </div>
+          <div class="field">
+            <label for="regNumber">Medical registration number</label>
+            <input type="text" id="regNumber" placeholder="e.g. MCI-2019-88214">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" required placeholder="••••••••">
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirm password</label>
+            <input type="password" id="confirmPassword" required placeholder="••••••••">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg mt-8">Create account</button>
+      </form>
+
+      <p class="auth-foot">Already have an account? <a class="link" href="login.html">Log in</a></p>
+    </div>
+  </main>
+</div>
+
+<script src="app.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

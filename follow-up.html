@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow-up — Ayusetu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="ayusetu-header"></div>
+
+<main class="app-main">
+  <div class="flow-shell">
+    <div class="page-head">
+      <div class="eyebrow">Follow-up</div>
+      <h1>Continue a previous case</h1>
+      <p>Pick a case to follow up on — we'll route this to the same doctor and hospital.</p>
+    </div>
+
+    <section id="panel-select">
+      <div id="previous-case-list"></div>
+    </section>
+
+    <section class="flow-card hidden" id="panel-form">
+      <h2 id="followup-title">What has changed since your last visit?</h2>
+      <p class="flow-sub" id="followup-sub"></p>
+      <div class="field mb-0">
+        <textarea id="followup-text" rows="6" placeholder="Describe what's changed — better, worse, new symptoms…"></textarea>
+      </div>
+      <div class="flow-actions">
+        <button class="btn btn-ghost" id="followup-back">← Choose a different case</button>
+        <button class="btn btn-primary" id="followup-continue" disabled>Continue →</button>
+      </div>
+    </section>
+
+    <section class="flow-card hidden" id="panel-summary">
+      <h2>Review your follow-up</h2>
+      <p class="flow-sub">Confirm before sending to your doctor.</p>
+      <div id="followup-summary"></div>
+      <div class="flow-actions">
+        <button class="btn btn-ghost" id="summary-back">← Back</button>
+        <button class="btn btn-accent btn-lg" id="followup-submit">Send to doctor →</button>
+      </div>
+    </section>
+
+    <section class="flow-card hidden" id="panel-done">
+      <div class="flex-center" style="flex-direction:column; text-align:center; padding:20px 0;">
+        <div class="empty-icon" style="margin-bottom:20px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2>Follow-up sent</h2>
+        <p class="flow-sub">Your doctor has been notified of your follow-up.</p>
+        <div class="flex gap-12 mt-16">
+          <a href="patient-dashboard.html" class="btn btn-primary">Back to dashboard</a>
+          <a href="history.html" class="btn btn-outline">View medical history</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="app.js"></script>
+<script src="follow-up.js"></script>
+</body>
+</html>

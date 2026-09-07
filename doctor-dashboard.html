@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctor dashboard — Ayusetu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="ayusetu-header"></div>
+
+<main class="app-main">
+  <div class="dash-hero">
+    <div>
+      <h1 id="greeting">Good morning, Doctor.</h1>
+      <p id="dash-sub">Here's what needs your attention today.</p>
+    </div>
+    <div class="flex gap-12" style="align-items:center;">
+      <span class="badge badge-mint" id="availability-badge">Available</span>
+    </div>
+  </div>
+
+  <div class="dash-grid">
+    <div class="stat-tile">
+      <div class="stat-num" id="stat-new">0</div>
+      <div class="stat-name">New cases</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-num" id="stat-patients">0</div>
+      <div class="stat-name">Patients</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-num" id="stat-followups">0</div>
+      <div class="stat-name">Follow-ups</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-num" id="stat-reviewed">0</div>
+      <div class="stat-name">Reviewed cases</div>
+    </div>
+  </div>
+
+  <div class="section-title">Cases requiring attention</div>
+  <div id="doctor-cases"></div>
+
+  <div class="section-title">Today's schedule</div>
+  <div class="card card-pad" id="schedule-card">
+    <p class="text-muted">Your submitted and seen cases for today are listed below.</p>
+    <div id="schedule-list" class="mt-16"></div>
+  </div>
+</main>
+
+<script src="app.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
