@@ -6,7 +6,7 @@ Ayusetu is an AI-assisted healthcare case-preparation platform that helps patien
 
 ---
 
-## 🌟 Key Features
+##  Key Features
 
 - **Guided Patient Case Intake**: 4-step progressive case preparation:
   1. Doctor Selection
@@ -24,7 +24,7 @@ Ayusetu is an AI-assisted healthcare case-preparation platform that helps patien
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (v16 or higher)
@@ -51,8 +51,7 @@ Ayusetu is an AI-assisted healthcare case-preparation platform that helps patien
    ```
 
 ---
-
-## 🔑 Demo Accounts
+##  Demo Accounts
 
 For quick local testing, you can use the 1-click **Quick Demo Accounts** buttons on the login page or enter:
 
