@@ -219,137 +219,152 @@ function emptyState(container, iconSvg, title, body, ctaHtml) {
 /* ---------- initial seed data for demo / evaluation ---------- */
 function ensureSeedData() {
   const users = getUsers();
-  if (!users || users.length === 0) {
-    const demoDoctor1 = {
-      id: 'doc_priya',
-      role: 'doctor',
-      name: 'Priya Sharma',
-      email: 'doctor@ayusetu.com',
-      phone: '+91 98765 43210',
-      password: 'password123',
-      specialization: 'Cardiology & Internal Medicine',
-      hospital: 'Apollo Hospitals, Hyderabad',
-      regNumber: 'TS-MCI-48291',
-      availability: 'Available',
-      location: 'Hyderabad, Telangana',
-      photo: null,
-      createdAt: Date.now() - 86400000 * 30
-    };
+  // Check if specific demo accounts already exist — don't re-seed if they do
+  const hasDemoPatient = users.some(u => (u.email === 'patient@ayusetu.com' || u.email === 'patient@ayusetu.org') && u.role === 'patient');
+  const hasDemoDoctor = users.some(u => (u.email === 'doctor@ayusetu.com' || u.email === 'doctor@ayusetu.org') && u.role === 'doctor');
+  if (hasDemoPatient && hasDemoDoctor) return; // already seeded correctly
 
-    const demoDoctor2 = {
-      id: 'doc_rajesh',
-      role: 'doctor',
-      name: 'Rajesh Kumar',
-      email: 'rajesh@ayusetu.com',
-      phone: '+91 98765 12345',
-      password: 'password123',
-      specialization: 'General Medicine',
-      hospital: 'Care Hospitals, Banjara Hills',
-      regNumber: 'TS-MCI-31902',
-      availability: 'Available',
-      location: 'Hyderabad, Telangana',
-      photo: null,
-      createdAt: Date.now() - 86400000 * 20
-    };
+  // Remove any stale demo accounts to avoid duplicates
+  const cleaned = users.filter(u =>
+    u.email !== 'patient@ayusetu.com' &&
+    u.email !== 'doctor@ayusetu.com' &&
+    u.email !== 'patient@ayusetu.org' &&
+    u.email !== 'doctor@ayusetu.org' &&
+    u.id !== 'doc_priya' &&
+    u.id !== 'doc_rajesh' &&
+    u.id !== 'pat_rahul'
+  );
 
-    const demoPatient = {
-      id: 'pat_rahul',
-      role: 'patient',
-      name: 'Rahul Verma',
-      email: 'patient@ayusetu.com',
-      phone: '+91 98123 45678',
-      password: 'password123',
-      dob: '1992-05-14',
-      location: 'Hyderabad, Telangana',
-      photo: null,
-      createdAt: Date.now() - 86400000 * 15
-    };
+  const demoDoctor1 = {
+    id: 'doc_priya',
+    role: 'doctor',
+    name: 'Priya Sharma',
+    email: 'doctor@ayusetu.com',
+    phone: '+91 98765 43210',
+    password: 'password123',
+    specialization: 'Cardiology & Internal Medicine',
+    hospital: 'Apollo Hospitals, Hyderabad',
+    regNumber: 'TS-MCI-48291',
+    availability: 'Available',
+    location: 'Hyderabad, Telangana',
+    photo: null,
+    createdAt: Date.now() - 86400000 * 30
+  };
 
-    saveUsers([demoDoctor1, demoDoctor2, demoPatient]);
+  const demoDoctor2 = {
+    id: 'doc_rajesh',
+    role: 'doctor',
+    name: 'Rajesh Kumar',
+    email: 'rajesh@ayusetu.com',
+    phone: '+91 98765 12345',
+    password: 'password123',
+    specialization: 'General Medicine',
+    hospital: 'Care Hospitals, Banjara Hills',
+    regNumber: 'TS-MCI-31902',
+    availability: 'Available',
+    location: 'Hyderabad, Telangana',
+    photo: null,
+    createdAt: Date.now() - 86400000 * 20
+  };
 
-    const demoCase1 = {
-      id: 'case_demo_01',
-      patientId: demoPatient.id,
-      beneficiaryId: demoPatient.id,
-      beneficiaryName: demoPatient.name,
-      doctorId: demoDoctor1.id,
-      hospital: demoDoctor1.hospital,
-      chiefConcern: 'Chest discomfort and shortness of breath',
-      story: 'I have been experiencing a tight, pressing discomfort in the center of my chest along with mild breathlessness, particularly when climbing stairs or walking briskly for the past 3 days. It eases when resting for 5 minutes.',
-      symptoms: ['Chest discomfort', 'Shortness of breath'],
-      category: 'chest',
-      questions: [
-        'When did you first notice this discomfort?',
-        'What does the discomfort feel like?',
-        'Does it radiate or spread anywhere?',
-        'Do you have any known medical conditions or history of elevated blood pressure?'
-      ],
-      answers: [
-        'Started 3 days ago during morning physical activity',
-        'Tight pressing sensation, like a heavy weight',
-        'Mild ache radiating towards the left shoulder',
-        'Mild hypertension diagnosed last year; taking Telmisartan 40mg'
-      ],
-      severity: 'high',
-      status: 'submitted',
-      isFollowUp: false,
-      doctorNotes: '',
-      createdAt: Date.now() - 3600000 * 2
-    };
+  const demoPatient = {
+    id: 'pat_rahul',
+    role: 'patient',
+    name: 'Rahul Verma',
+    email: 'patient@ayusetu.com',
+    phone: '+91 98123 45678',
+    password: 'password123',
+    dob: '1992-05-14',
+    location: 'Hyderabad, Telangana',
+    photo: null,
+    createdAt: Date.now() - 86400000 * 15
+  };
 
-    const demoCase2 = {
-      id: 'case_demo_02',
-      patientId: demoPatient.id,
-      beneficiaryId: demoPatient.id,
-      beneficiaryName: demoPatient.name,
-      doctorId: demoDoctor2.id,
-      hospital: demoDoctor2.hospital,
-      chiefConcern: 'Persistent dry cough and mild fever',
-      story: 'Had a low grade fever around 100°F with persistent dry hacking cough and throat irritation for 4 days.',
-      symptoms: ['Dry cough', 'Mild fever'],
-      category: 'cough',
-      questions: [
-        'How long have you had the cough?',
-        'Are you experiencing body ache or fatigue?'
-      ],
-      answers: [
-        'About 4 days now',
-        'Mild throat irritation and evening fatigue'
-      ],
-      severity: 'normal',
-      status: 'reviewed',
-      isFollowUp: false,
-      doctorNotes: 'Viral upper respiratory tract infection. Advised warm saline gargles, Paracetamol 650mg SOS, and steam inhalation twice daily.',
-      createdAt: Date.now() - 86400000 * 5
-    };
+  saveUsers([...cleaned, demoDoctor1, demoDoctor2, demoPatient]);
 
-    saveCases([demoCase1, demoCase2]);
+  const demoCase1 = {
+    id: 'case_demo_01',
+    patientId: demoPatient.id,
+    beneficiaryId: demoPatient.id,
+    beneficiaryName: demoPatient.name,
+    doctorId: demoDoctor1.id,
+    hospital: demoDoctor1.hospital,
+    chiefConcern: 'Chest discomfort and shortness of breath',
+    story: 'I have been experiencing a tight, pressing discomfort in the center of my chest along with mild breathlessness, particularly when climbing stairs or walking briskly for the past 3 days. It eases when resting for 5 minutes.',
+    symptoms: ['Chest discomfort', 'Shortness of breath'],
+    category: 'chest',
+    questions: [
+      'When did you first notice this discomfort?',
+      'What does the discomfort feel like?',
+      'Does it radiate or spread anywhere?',
+      'Do you have any known medical conditions or history of elevated blood pressure?'
+    ],
+    answers: [
+      'Started 3 days ago during morning physical activity',
+      'Tight pressing sensation, like a heavy weight',
+      'Mild ache radiating towards the left shoulder',
+      'Mild hypertension diagnosed last year; taking Telmisartan 40mg'
+    ],
+    severity: 'high',
+    status: 'submitted',
+    isFollowUp: false,
+    doctorNotes: '',
+    createdAt: Date.now() - 3600000 * 2
+  };
 
-    addNotification(demoPatient.id, 'Welcome to Ayusetu, Rahul! Your account is ready.', 'info', '#');
-    addNotification(demoPatient.id, `Dr. ${demoDoctor2.name} reviewed your case "${demoCase2.chiefConcern}".`, 'case', `history.html?case=${demoCase2.id}`);
-    addNotification(demoDoctor1.id, `New high priority case submitted by ${demoPatient.name}: ${demoCase1.chiefConcern}`, 'case', `doctor-case.html?case=${demoCase1.id}`);
+  const demoCase2 = {
+    id: 'case_demo_02',
+    patientId: demoPatient.id,
+    beneficiaryId: demoPatient.id,
+    beneficiaryName: demoPatient.name,
+    doctorId: demoDoctor2.id,
+    hospital: demoDoctor2.hospital,
+    chiefConcern: 'Persistent dry cough and mild fever',
+    story: 'Had a low grade fever around 100°F with persistent dry hacking cough and throat irritation for 4 days.',
+    symptoms: ['Dry cough', 'Mild fever'],
+    category: 'cough',
+    questions: [
+      'How long have you had the cough?',
+      'Are you experiencing body ache or fatigue?'
+    ],
+    answers: [
+      'About 4 days now',
+      'Mild throat irritation and evening fatigue'
+    ],
+    severity: 'normal',
+    status: 'reviewed',
+    isFollowUp: false,
+    doctorNotes: 'Viral upper respiratory tract infection. Advised warm saline gargles, Paracetamol 650mg SOS, and steam inhalation twice daily.',
+    createdAt: Date.now() - 86400000 * 5
+  };
 
-    saveMessages([
-      {
-        id: uid('msg'),
-        caseId: demoCase1.id,
-        senderId: demoPatient.id,
-        receiverId: demoDoctor1.id,
-        message: 'Hello Dr. Priya, I submitted my case with details about the chest tightness. Looking forward to your advice.',
-        createdAt: Date.now() - 3600000 * 1.5
-      }
-    ]);
+  const currentCases = getCases().filter(c => c.id !== demoCase1.id && c.id !== demoCase2.id);
+  saveCases([...currentCases, demoCase1, demoCase2]);
 
-    saveFamilies([
-      {
-        userId: demoPatient.id,
-        members: [
-          { id: uid('fam'), name: 'Sunita Verma', relation: 'Mother', dob: '1962-08-20', notes: 'Type 2 Diabetes, on Metformin' },
-          { id: uid('fam'), name: 'Aarav Verma', relation: 'Son', dob: '2018-11-05', notes: 'Seasonal allergic rhinitis' }
-        ]
-      }
-    ]);
-  }
+  addNotification(demoPatient.id, 'Welcome to Ayusetu, Rahul! Your account is ready.', 'info', '#');
+  addNotification(demoPatient.id, `Dr. ${demoDoctor2.name} reviewed your case "${demoCase2.chiefConcern}".`, 'case', `history.html?case=${demoCase2.id}`);
+  addNotification(demoDoctor1.id, `New high priority case submitted by ${demoPatient.name}: ${demoCase1.chiefConcern}`, 'case', `doctor-case.html?case=${demoCase1.id}`);
+
+  saveMessages([
+    {
+      id: uid('msg'),
+      caseId: demoCase1.id,
+      senderId: demoPatient.id,
+      receiverId: demoDoctor1.id,
+      message: 'Hello Dr. Priya, I submitted my case with details about the chest tightness. Looking forward to your advice.',
+      createdAt: Date.now() - 3600000 * 1.5
+    }
+  ]);
+
+  saveFamilies([
+    {
+      userId: demoPatient.id,
+      members: [
+        { id: uid('fam'), name: 'Sunita Verma', relation: 'Mother', dob: '1962-08-20', notes: 'Type 2 Diabetes, on Metformin' },
+        { id: uid('fam'), name: 'Aarav Verma', relation: 'Son', dob: '2018-11-05', notes: 'Seasonal allergic rhinitis' }
+      ]
+    }
+  ]);
 }
 
 // Automatically seed on initial load

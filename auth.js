@@ -61,13 +61,30 @@ document.addEventListener('DOMContentLoaded', () => {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       clearError();
+      if (typeof ensureSeedData === 'function') {
+        ensureSeedData();
+      }
+
       const email = document.getElementById('email').value.trim().toLowerCase();
       const password = document.getElementById('password').value;
 
       if (!email || !password) { showError('Please enter your email and password.'); return; }
 
-      const users = getUsers();
-      const user = users.find(u => u.email.toLowerCase() === email && u.role === currentRole);
+      let users = getUsers();
+      const altEmail = email.endsWith('@ayusetu.org')
+        ? email.replace('@ayusetu.org', '@ayusetu.com')
+        : (email.endsWith('@ayusetu.com') ? email.replace('@ayusetu.com', '@ayusetu.org') : email);
+
+      let user = users.find(u => (u.email.toLowerCase() === email || u.email.toLowerCase() === altEmail) && u.role === currentRole);
+
+      // If not found but is demo email, force reseed and try once more
+      if (!user && (email.includes('ayusetu') || email.startsWith('patient@') || email.startsWith('doctor@'))) {
+        if (typeof ensureSeedData === 'function') {
+          ensureSeedData();
+          users = getUsers();
+          user = users.find(u => (u.email.toLowerCase() === email || u.email.toLowerCase() === altEmail) && u.role === currentRole);
+        }
+      }
 
       if (!user) {
         showError(`No ${currentRole} account found with that email. Check your role selection or sign up.`);
@@ -86,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const quickDoctorBtn = document.getElementById('quick-doctor-btn');
     if (quickPatientBtn) {
       quickPatientBtn.addEventListener('click', () => {
+        if (typeof ensureSeedData === 'function') ensureSeedData();
         setRole('patient');
         document.getElementById('email').value = 'patient@ayusetu.com';
         document.getElementById('password').value = 'password123';
@@ -94,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (quickDoctorBtn) {
       quickDoctorBtn.addEventListener('click', () => {
+        if (typeof ensureSeedData === 'function') ensureSeedData();
         setRole('doctor');
         document.getElementById('email').value = 'doctor@ayusetu.com';
         document.getElementById('password').value = 'password123';
